@@ -1,0 +1,12 @@
+{
+        "id": 1,
+        "name": "update",
+        "diameter": 0.0,
+        "radius": 0.0,
+        "distanceFromStar": 0.0,
+        "planetType": {
+        "size": "NORMAL",
+        "composition": "ROCKY"
+        },
+        "numberOfSatellites": 0
+        }

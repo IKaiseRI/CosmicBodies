@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:jpa="http://www.springframework.org/schema/data/jpa" xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+           http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
+           http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd http://www.springframework.org/schema/mvc https://www.springframework.org/schema/mvc/spring-mvc.xsd">
+
+    <!-- Define DataSource bean for MySQL -->
+    <bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="com.mysql.cj.jdbc.Driver"/>
+        <property name="url" value="jdbc:mysql://localhost:3306/spring_cosmos"/>
+        <property name="username" value="root"/>
+        <property name="password" value="523817"/>
+    </bean>
+
+    <!-- Configure JPA EntityManagerFactory -->
+    <bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="com.example.springtask.entity"/>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.hbm2ddl.auto">create</prop>
+            </props>
+        </property>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+    </bean>
+
+    <!-- Configure JPA Transaction Manager -->
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="entityManagerFactory"/>
+    </bean>
+
+    <bean id="planetMapper" class="com.example.springtask.entity.mapper.PlanetMapper"/>
+    <bean id="satelliteMapper" class="com.example.springtask.entity.mapper.SatelliteMapper"/>
+    <bean id="starMapper" class="com.example.springtask.entity.mapper.StarMapper"/>
+
+    <context:component-scan base-package="com.example.springtask.repository"/>
+
+    <!-- Define PlanetService bean -->
+    <bean id="planetService" class="com.example.springtask.service.PlanetService">
+        <!-- Inject dependencies -->
+        <constructor-arg ref="planetRepository"/>
+        <constructor-arg ref="planetMapper"/>
+    </bean>
+
+    <!-- Define SatelliteService bean -->
+    <bean id="satelliteService" class="com.example.springtask.service.SatelliteService">
+        <!-- Inject dependencies -->
+        <constructor-arg ref="satelliteRepository"/>
+        <constructor-arg ref="satelliteMapper"/>
+    </bean>
+
+    <!-- Define StarService bean -->
+    <bean id="starService" class="com.example.springtask.service.StarService">
+        <!-- Inject dependencies -->
+        <constructor-arg ref="starRepository"/>
+        <constructor-arg ref="starMapper"/>
+    </bean>
+</beans>
