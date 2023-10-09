@@ -15,7 +15,7 @@ public class SatelliteMapper {
                 satellite.getPlanetId() != null ? satellite.getPlanetId().getName() : null
         );
     }
-
+/*
     public Satellite toEntity(SatelliteDto satelliteDto) {
         Satellite satellite = new Satellite();
         satellite.setId(satelliteDto.id());
@@ -25,5 +25,5 @@ public class SatelliteMapper {
         satellite.setComposition(satelliteDto.composition());
 
         return satellite;
-    }
+    }*/
 }

@@ -25,7 +25,7 @@ public class StarMapper {
         );
     }
 
-    public Star toEntity(StarDto starDto) {
+/*    public Star toEntity(StarDto starDto) {
         Star star = new Star();
         star.setId(starDto.id());
         star.setName(starDto.name());
@@ -35,5 +35,5 @@ public class StarMapper {
         star.setNumberOfPlanets(starDto.numberOfPlanets());
 
         return star;
-    }
+    }*/
 }

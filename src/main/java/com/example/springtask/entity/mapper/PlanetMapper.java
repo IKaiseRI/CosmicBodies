@@ -18,7 +18,7 @@ public class PlanetMapper {
         );
     }
 
-    public Planet toEntity(PlanetDto planetDto) {
+/*    public Planet toEntity(PlanetDto planetDto) {
         Planet planet = new Planet();
         planet.setId(planetDto.id());
         planet.setName(planetDto.name());
@@ -29,5 +29,5 @@ public class PlanetMapper {
         planet.setNumberOfSatellites(planetDto.numberOfSatellites());
 
         return planet;
-    }
+    }*/
 }
