@@ -45,7 +45,7 @@ public class PlanetController {
         planetService.update(id, updatedPlanet);
     }
 
-    @PutMapping("/{starId}/add-satellite/{satelliteId}")
+    @PutMapping("/{planetId}/add-satellite/{satelliteId}")
     public void addSatelliteToPlanet(
             @PathVariable Long planetId,
             @PathVariable Long satelliteId
